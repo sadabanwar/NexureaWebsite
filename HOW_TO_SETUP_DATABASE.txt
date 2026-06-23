@@ -1,0 +1,195 @@
+╔══════════════════════════════════════════════════════════════╗
+║                                                              ║
+║           DATABASE SETUP - NEXUREA ENTREPRENEUR              ║
+║                                                              ║
+╚══════════════════════════════════════════════════════════════╝
+
+
+⚠️  IMPORTANT: MySQL Must Be Installed First!
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+If MySQL is NOT installed:
+
+    📥 Download MySQL: https://dev.mysql.com/downloads/installer/
+
+    ✅ Install MySQL Installer (includes MySQL Server + Workbench)
+    ⚙️  During setup, choose a ROOT PASSWORD (remember it!)
+    🔧 Enable MySQL as Windows Service
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+OPTION 1: AUTOMATIC SETUP (Command Line)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+    📁 Double-click: SETUP_DATABASE.bat
+
+    This will:
+    ✅ Check if MySQL is installed
+    ✅ Run DATABASE_SETUP.sql automatically
+    ✅ Create database and tables
+    ✅ Add admin user and sample data
+
+    You'll be asked for your MySQL root password.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+OPTION 2: MANUAL SETUP (MySQL Workbench - EASIEST!)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+    1. 🖥️  Open MySQL Workbench
+    2. 🔌 Connect to Local instance (root)
+    3. 📂 File → Open SQL Script
+    4. 📄 Select: DATABASE_SETUP.sql
+    5. ⚡ Click Lightning Bolt (Execute)
+    6. ✅ Check "Action Output" for success!
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+OPTION 3: COMMAND LINE (Advanced)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+    Open Command Prompt and run:
+
+    mysql -u root -p < DATABASE_SETUP.sql
+
+    Enter your MySQL root password when prompted.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+OPTION 4: SIMPLE (Let Spring Boot Create Tables)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+    Step 1: Create Empty Database
+
+        Open MySQL and run:
+        CREATE DATABASE nexurea_university;
+
+    Step 2: Start Backend
+
+        Spring Boot will auto-create all tables!
+
+    Step 3: Add Admin User (After backend starts)
+
+        Run the admin user INSERT statements from
+        DATABASE_SETUP.sql manually
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📝 WHAT GETS CREATED
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+    ✅ Database: nexurea_university
+
+    ✅ Tables (auto-created by Spring Boot):
+       • users
+       • roles
+       • user_roles
+       • course_packages
+       • course_videos
+       • purchases
+       • commissions
+       • withdrawals
+
+    ✅ Default Data:
+       • Admin user (admin / admin123)
+       • 2 Roles (ROLE_USER, ROLE_ADMIN)
+       • 4 Course packages (₹499, ₹999, ₹1499, ₹1999)
+       • Sample course videos
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+⚙️  UPDATE BACKEND CONFIGURATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+    After database setup, update this file:
+
+    📄 src\main\resources\application.properties
+
+    Update Line 3 with YOUR MySQL root password:
+
+    spring.datasource.password=YOUR_MYSQL_PASSWORD
+
+    Example:
+    spring.datasource.password=MySecure123!
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✅ VERIFY DATABASE SETUP
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+    Open MySQL and run:
+
+    -- Check database exists
+    SHOW DATABASES;
+
+    -- Use the database
+    USE nexurea_university;
+
+    -- Check tables
+    SHOW TABLES;
+
+    -- Check admin user
+    SELECT * FROM users WHERE username = 'admin';
+
+    -- Check course packages
+    SELECT id, name, price, commission_rate
+    FROM course_packages;
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🐛 TROUBLESHOOTING
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+    ❌ "MySQL is not found"
+       → Install MySQL from link above
+       → Or add MySQL to Windows PATH
+
+    ❌ "Access denied for user 'root'"
+       → Wrong password
+       → Enter correct MySQL root password
+
+    ❌ "Can't connect to MySQL server"
+       → MySQL service not running
+       → Start: Windows Services → MySQL80 → Start
+
+    ❌ "Table doesn't exist"
+       → Normal on first run
+       → Start backend, tables auto-create
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📚 DETAILED HELP
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+    For complete step-by-step instructions, read:
+
+    📖 DATABASE_SETUP_GUIDE.md
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🎯 NEXT STEPS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+    After database is set up:
+
+    1. ✅ Database created
+    2. ⚙️  Update application.properties with password
+    3. 🚀 Run START_WEBSITE.bat
+    4. 🌐 Open http://localhost:3000
+    5. 🔑 Login: admin / admin123
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📁 FILES TO USE:
+
+    SETUP_DATABASE.bat         ← Double-click to run setup
+    DATABASE_SETUP.sql         ← SQL script (for manual run)
+    DATABASE_SETUP_GUIDE.md    ← Complete instructions
+    HOW_TO_SETUP_DATABASE.txt  ← This file
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+🎉 Once database is ready, your platform is ready to launch!
+

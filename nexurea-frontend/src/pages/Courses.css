@@ -1,0 +1,109 @@
+.courses-page {
+  min-height: 100vh;
+}
+
+.courses-hero {
+  background: linear-gradient(135deg, var(--primary-navy), var(--secondary-navy));
+  padding: 80px 0;
+  text-align: center;
+  color: var(--white);
+}
+
+.courses-content {
+  padding: 80px 0;
+}
+
+.courses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 32px;
+  margin-bottom: 80px;
+}
+
+.no-courses {
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.no-courses h3 {
+  color: var(--primary-navy);
+  font-size: 2rem;
+  margin-bottom: 16px;
+}
+
+.no-courses p {
+  color: var(--text-light);
+  font-size: 1.1rem;
+}
+
+.courses-benefits {
+  background: linear-gradient(180deg, var(--background) 0%, var(--white) 100%);
+  padding: 60px 40px;
+  border-radius: 24px;
+}
+
+.courses-benefits h2 {
+  color: var(--primary-navy);
+  font-size: 2.5rem;
+}
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 32px;
+}
+
+.benefit-item {
+  text-align: center;
+  padding: 24px;
+}
+
+.benefit-icon {
+  width: 48px;
+  height: 48px;
+  color: var(--gold);
+  margin: 0 auto 16px;
+}
+
+.benefit-item h3 {
+  color: var(--primary-navy);
+  font-size: 1.25rem;
+  margin-bottom: 8px;
+}
+
+.benefit-item p {
+  color: var(--text-light);
+  line-height: 1.6;
+}
+
+.error-message {
+  background: var(--error);
+  color: var(--white);
+  padding: 16px 24px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .courses-hero {
+    padding: 60px 0;
+  }
+
+  .courses-content {
+    padding: 60px 0;
+  }
+
+  .courses-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-bottom: 60px;
+  }
+
+  .courses-benefits {
+    padding: 40px 24px;
+  }
+
+  .courses-benefits h2 {
+    font-size: 2rem;
+  }
+}

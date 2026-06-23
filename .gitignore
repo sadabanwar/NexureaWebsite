@@ -31,3 +31,27 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Nexurea Frontend ###
+nexurea-frontend/node_modules/
+nexurea-frontend/build/
+nexurea-frontend/.env.local
+nexurea-frontend/.env.production.local
+nexurea-frontend/.env.development.local
+nexurea-frontend/.env.test.local
+nexurea-frontend/npm-debug.log*
+nexurea-frontend/yarn-debug.log*
+nexurea-frontend/yarn-error.log*
+
+### Sensitive Data ###
+*.env
+application-local.properties
+application-prod.properties
+
+### OS ###
+.DS_Store
+Thumbs.db
+
+### Database ###
+*.sql.backup
+*.sql~
